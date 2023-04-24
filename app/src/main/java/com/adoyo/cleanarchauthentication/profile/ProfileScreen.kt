@@ -24,7 +24,7 @@ import com.adoyo.cleanarchauthentication.sign_in.UserData
 @Composable
 fun ProfileScreen(
     userData: UserData?,
-    signOut: () -> Unit
+    onSignOut: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -53,7 +53,7 @@ fun ProfileScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
-        Button(onClick = { signOut }) {
+        Button(onClick = { onSignOut }) {
             Text(text = "Sign Out")
 
         }
