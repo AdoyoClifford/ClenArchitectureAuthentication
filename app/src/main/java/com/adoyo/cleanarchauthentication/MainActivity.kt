@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -52,8 +53,8 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "sign_in") {
                         composable("sign_in") {
-                            val viewModel = viewModels<SignInViewModel>()
-                            val state by viewModel.value.state.collectAsStateWithLifecycle()
+                            val viewModel = viewModel<SignInViewModel>()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
 
                             LaunchedEffect(key1 = Unit) {
                                 if (googleAuthUiClient.getSignedInUser() != null) {
