@@ -86,7 +86,7 @@ class MainActivity : ComponentActivity() {
                                     ).show()
 
                                     navController.navigate("profile")
-                                    viewModel.resetState
+                                    viewModel.resetState()
                                 }
                             }
 
@@ -104,19 +104,19 @@ class MainActivity : ComponentActivity() {
                         composable("profile") {
                             ProfileScreen(
                                 userData = googleAuthUiClient.getSignedInUser(),
-                                onSignOut = {}) {
-                                lifecycleScope.launch {
-                                    googleAuthUiClient.signOut()
-                                    Toast.makeText(
-                                        applicationContext,
-                                        "Signed Out",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                onSignOut = {
+                                    lifecycleScope.launch {
+                                        googleAuthUiClient.signOut()
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Signed Out",
+                                            Toast.LENGTH_LONG
+                                        ).show()
 
-                                    navController.popBackStack()
-                                }
+                                        navController.popBackStack()
+                                    }
 
-                            }
+                                })
                         }
 
                     }
