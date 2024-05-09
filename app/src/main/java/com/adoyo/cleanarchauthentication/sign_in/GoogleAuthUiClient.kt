@@ -3,6 +3,7 @@ package com.adoyo.cleanarchauthentication.sign_in
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import android.util.Log
 import com.adoyo.cleanarchauthentication.R
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
@@ -25,6 +26,7 @@ class GoogleAuthUiClient(
                 buildSignInRequest()
             ).await()
         } catch (e: Exception) {
+            Log.e("sign", "Error in signIn: ", e) // Log the exceptio
             e.printStackTrace()
             if (e is CancellationException) throw e
             null

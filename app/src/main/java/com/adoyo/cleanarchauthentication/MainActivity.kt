@@ -1,6 +1,7 @@
 package com.adoyo.cleanarchauthentication
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -93,6 +94,10 @@ class MainActivity : ComponentActivity() {
                             SignInScreen(state = state, onSignInClick = {
                                 lifecycleScope.launch {
                                     val signInIntentSender = googleAuthUiClient.signIn()
+                                    Log.d(
+                                        "sign",
+                                        "signInIntentSender: $signInIntentSender"
+                                    ) // Log the result of signIn()
                                     launcher.launch(
                                         IntentSenderRequest.Builder(
                                             signInIntentSender ?: return@launch
